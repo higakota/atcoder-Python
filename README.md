@@ -88,7 +88,7 @@
 ### Day4(2026/02/22)
 **取り組んだ問題**
 - ABC445
-  - c - 
+  - c - Sugoroku Destination
 
 - classの学習
 **できたこと**
