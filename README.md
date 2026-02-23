@@ -70,8 +70,8 @@
 **取り組んだ問題**
 - ABC440
   - B - Trifecta
-
 - classの学習
+
 **できたこと**
 - listの作成
 - 並び替えのやり方
@@ -90,7 +90,6 @@
 - ABC445
   - c - Sugoroku Destination
 
-- classの学習
 **できたこと**
 - アルゴリズムの理解と構築
   
@@ -109,7 +108,6 @@
 - ABC445
   - c - Sugoroku Destination
 
-- classの学習
 **できたこと**
 - ダブリングの理解
 - ダブリングによるAC
