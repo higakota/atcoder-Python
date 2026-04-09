@@ -1,0 +1,68 @@
+<h1>{{ menu.name }}</h1>
+
+{% if menu.hot %}
+  <div style="background-color: #fff5f5; padding: 10px; border-radius: 5px; margin-bottom: 10px;">
+    <h3 style="color: #d9534f; margin-top: 0;">♨️ ホットの作り方</h3>
+    <p style="white-space: pre-wrap;">{{ menu.hot }}</p>
+  </div>
+{% endif %}
+
+{% if menu.ice %}
+  <div style="background-color: #f0f8ff; padding: 10px; border-radius: 5px; margin-bottom: 10px;">
+    <h3 style="color: #5bc0de; margin-top: 0;">🧊 アイスの作り方</h3>
+    <p style="white-space: pre-wrap;">{{ menu.ice }}</p>
+  </div>
+{% endif %}
+
+{% if menu.recipe %}
+  <div style="background-color: #f9f9f9; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+    
+    <h3 style="margin-top: 0; border-bottom: 2px solid #333; padding-bottom: 5px;">
+      {% if menu.category == "closing" %}
+        🧹 作業手順
+      {% elif menu.category == "other" %}
+        ✅ チェックリスト
+      {% else %}
+        📖 作り方
+      {% endif %}
+    </h3>
+
+    {% if menu.category == "other"  %}
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        {% for line in menu.recipe.split('\n') %}
+          {% if line.strip() %} <label style="display: flex; align-items: center; cursor: pointer; background: white; padding: 10px; border-radius: 5px; border: 1px solid #ddd;">
+              <input type="checkbox" style="width: 20px; height: 20px; margin-right: 10px;">
+              <span>{{ line }}</span>
+            </label>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <p style="white-space: pre-wrap; line-height: 1.6;">{{ menu.recipe }}</p>
+    {% endif %}
+
+  </div>
+{% endif %}
+
+<br>
+<a href="/">← メニューに戻る</a>
+<script>
+  
+  const menuId = "{{ menu.name }}"; 
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+  checkboxes.forEach((checkbox, index) => {
+    
+    const savedStatus = localStorage.getItem(`checked_${menuId}_${index}`);
+    if (savedStatus === "true") {
+      checkbox.checked = true;
+    }
+
+    
+    checkbox.addEventListener("change", () => {
+      localStorage.setItem(`checked_${menuId}_${index}`, checkbox.checked);
+    });
+  });
+
+  
+</script>
