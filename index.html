@@ -1,0 +1,68 @@
+<h1>店舗マニュアル</h1>
+
+<form action="/search" method="get" style="margin-bottom: 20px;">
+  <input type="text" name="q" value="{{ query }}" placeholder="メニューを検索...">
+  <button type="submit">検索</button>
+  {% if query %}
+    <a href="/">クリア</a>
+  {% endif %}
+</form>
+
+{% if query %}
+  <p>「{{ query }}」の検索結果: {{ menus|length }} 件</p>
+{% endif %}
+
+<h2 style="color: rgba(83, 50, 3, 0.993);">☕ ドリンク</h2>
+<ul>
+  {% for id, menu in menus.items() %}
+    {% if menu.category == "drink" %}
+      <li><a href="/menu/{{ id }}">{{ menu.name }}</a></li>
+    {% endif %}
+  {% endfor %}
+</ul>
+
+<h2 style="color: darkorange;">🍳 フード</h2>
+<ul>
+  {% for id, menu in menus.items() %}
+    {% if menu.category == "food" %}
+      <li><a href="/menu/{{ id }}">{{ menu.name }}</a></li>
+    {% endif %}
+  {% endfor %}
+</ul>
+
+<h2 style="color: rgb(43, 31, 33);">🧹 締め作業</h2>
+<ul>
+  {% for id, menu in menus.items() %}
+    {% if menu.category == "closing" %}
+      <li><a href="/menu/{{ id }}">{{ menu.name }}</a></li>
+    {% endif %}
+  {% endfor %}
+</ul>
+
+<br>
+<br>
+
+<h3 style="color: black;">その他の作業</h3>
+<ul>
+  {% for id, menu in menus.items() %}
+    {% if menu.category == "other" %}
+      <li><a href="/menu/{{ id }}">{{ menu.name }}</a></li>
+    {% endif %}
+  {% endfor %}
+</ul>
+
+<style>
+  body {
+    font-family: Arial;
+    padding: 20px;
+  }
+
+  li {
+    margin: 10px 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: blue;
+  }
+</style>
